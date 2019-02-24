@@ -72,8 +72,7 @@ $(function() {
 
          // use 'beforeEach' and 'done' to ensure loadFeed completes before tests are run
          beforeEach(function(done) {
-           loadFeed(0);
-           done();
+           loadFeed(0, done);
          });
 
          // tests for entry elements in .feed
@@ -91,18 +90,15 @@ $(function() {
         let firstFeed;
         let secondFeed;
 
-        // assign heading text from first element to first variable
+        // assign text from loadFeed to variables
         beforeEach(function(done) {
-          loadFeed(0);
-          firstFeed = $('h1.header-title')[0].innerText;
-          done();
-        });
-
-        // assign heading text from second element to second variable
-        afterEach(function(done) {
-          loadFeed(1);
-          secondFeed = $('h1.header-title')[0].innerText;
-          done();
+          loadFeed(0, function() {
+            firstFeed = $('h1.header-title')[0].innerText;
+            loadFeed(1, function() {
+              secondFeed = $('h1.header-title')[0].innerText;
+              done();
+            });
+          });
         });
 
         // check that the two variables are not equal
