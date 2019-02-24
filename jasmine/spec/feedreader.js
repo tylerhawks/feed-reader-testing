@@ -87,7 +87,6 @@ $(function() {
        });
 
     // Test Suite for 'New Feed Selection'
-    // TODO: FIND THE BUG!! (not loading properly)
     describe('New Feed Selection', function() {
         let firstFeed;
         let secondFeed;
